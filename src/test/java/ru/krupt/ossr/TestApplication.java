@@ -31,6 +31,14 @@ import java.util.Map;
 @SuppressWarnings("WeakerAccess")
 public class TestApplication {
 
+    private static final Map<String, String> SCHEMA_CONVERSION = new HashMap<>();
+
+    static {
+        SCHEMA_CONVERSION.put("EISSD", "EISSD_DEV");
+        SCHEMA_CONVERSION.put("IKESHPD", "IKESHPD_DEV");
+        SCHEMA_CONVERSION.put("CONTRACT", "CONTRACT_DEV");
+    }
+
     private final Path patchDir;
     private final Path bakDir;
 
@@ -65,7 +73,8 @@ public class TestApplication {
 
     private void processFile(Path path) throws ExecutionFailedException {
         final String fileName = path.getFileName().toString();
-        final String schema = SchemaUtils.getSchemaFromFileName(fileName);
+        String schema = SchemaUtils.getSchemaFromFileName(fileName);
+        schema = SCHEMA_CONVERSION.getOrDefault(schema, schema);
         log.info("Processing {}", fileName);
         final Connection connection = schemas.computeIfAbsent(schema, key -> {
             System.out.println("Введите пароль для схемы " + key + ":");
@@ -97,6 +106,9 @@ public class TestApplication {
                         || command.getSubType() == CommandSubType.DELETE) {
                     rowsAffected = statement.executeUpdate(command.getText());
                     needCommit = true;
+                } else if (command.getSubType() == CommandSubType.COMMIT) {
+                    connection.commit();
+                    needCommit = false;
                 } else {
                     statement.execute(command.getText());
                     final SQLWarning warnings = statement.getWarnings();
@@ -111,7 +123,7 @@ public class TestApplication {
             }
             if (needCommit) {
                 connection.commit();
-                log.info("Commit complete");
+                log.info("Auto commit complete");
             }
         } catch (SQLException e) {
             log.error("Query execution failed", e);

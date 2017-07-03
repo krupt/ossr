@@ -162,7 +162,7 @@ INSERT INTO t_ab_option_avail
   WHERE id_serv IN (258, 259, 260) /*;
        Only Ural;
         ;*/ AND mrf_id = 7;
-
+commit;
 /*INSERT INTO t_ab_option_avail
   (id_option, id_mrf, action, date_start, date_end, id_region)
   SELECT id_option, mrf_id, CASE WHEN o.code LIKE '%$_transfer$_%' ESCAPE '$' THEN 1 ELSE 0 END, '17.04.2017', '31.12.2999', reg_id

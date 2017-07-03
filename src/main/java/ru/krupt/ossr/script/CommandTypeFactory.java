@@ -12,9 +12,9 @@ class CommandTypeFactory {
     }
 
     private static boolean matchesPlSqlObject(String source) {
-        if (source.startsWith("create")) {
-            if (source.contains("type") || source.contains("package") || source.contains("function")
-                    || source.contains("procedure") || source.contains("trigger") || source.contains("java")) {
+        if (source.startsWith("create ")) {
+            if (source.contains(" type ") || source.contains(" package ") || source.contains(" function ")
+                    || source.contains(" procedure ") || source.contains(" trigger ") || source.contains(" java ")) {
                 return true;
             }
         }

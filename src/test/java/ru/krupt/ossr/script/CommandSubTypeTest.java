@@ -24,6 +24,7 @@ public class CommandSubTypeTest {
         map.put("INSERT INTO disabled(name, value) VALUES('dsads', 1)", CommandSubType.INSERT);
         map.put("BEGIN NULL; END;", CommandSubType.UNKNOWN);
         map.put("DECLARE v_option NUMBER; BEGIN NULL; END;", CommandSubType.UNKNOWN);
+        map.put("COMMIT;", CommandSubType.COMMIT);
     }
 
     @Test

@@ -18,7 +18,7 @@ public class ScriptParserTest {
     public void testSqlAndAnonymousPlSqlBlockFile() throws IOException {
         try (final InputStream resource = getClass().getResourceAsStream("/testPatch/00_EISSD_ab_service.sql")) {
             final List<Command> commands = (List<Command>) ScriptParser.parseFile(resource);
-            Assert.assertEquals(13, commands.size());
+            Assert.assertEquals(14, commands.size());
             final Command command = commands.get(0);
             Assert.assertEquals(CommandTypes.DEFAULT, command.getType());
             Assert.assertEquals(CommandSubType.COMMENT, command.getSubType());
@@ -75,6 +75,9 @@ public class ScriptParserTest {
                             + "        ;*/ AND mrf_id = 7",
                     command12.getText()
             );
+            final Command command13 = commands.get(13);
+            Assert.assertEquals(CommandTypes.DEFAULT, command13.getType());
+            Assert.assertEquals(CommandSubType.COMMIT, command13.getSubType());
         }
     }
 
@@ -153,7 +156,7 @@ public class ScriptParserTest {
                         final List<Command> commands = (List<Command>) ScriptParser.parseFile(new FileInputStream(path.toFile()));
                         switch (fileName) {
                             case "00_EISSD_ab_service.sql":
-                                expectedCommands = 13;
+                                expectedCommands = 14;
                                 break;
                             case "01_EISSD_create_tables.sql":
                                 expectedCommands = 64;

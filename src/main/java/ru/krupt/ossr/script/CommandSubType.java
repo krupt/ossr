@@ -6,6 +6,8 @@ public enum CommandSubType {
     UPDATE,
     DELETE,
 
+    COMMIT,
+
     CREATE,
     DROP,
     ALTER,

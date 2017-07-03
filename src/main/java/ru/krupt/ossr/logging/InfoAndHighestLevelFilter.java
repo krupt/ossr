@@ -13,6 +13,6 @@ public class InfoAndHighestLevelFilter extends AbstractMatcherFilter {
         if (level == Level.TRACE || level == Level.DEBUG) {
             return FilterReply.DENY;
         }
-        return FilterReply.NEUTRAL;
+        return FilterReply.ACCEPT;
     }
 }

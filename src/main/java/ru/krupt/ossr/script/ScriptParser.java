@@ -22,7 +22,8 @@ public class ScriptParser {
             while ((line = reader.readLine()) != null) {
                 final String trimmedCommand = commandText.toString().toLowerCase().trim();
                 if (currentCommandType == CommandTypes.DEFAULT) {
-                    currentCommandType = CommandTypeFactory.getCommand(trimmedCommand);
+                    final String withoutSqlComments = SqlCommentsUtils.skipSqlComments(trimmedCommand, 5);
+                    currentCommandType = CommandTypeFactory.getCommand(withoutSqlComments);
                 }
                 String trimmedLine = line.trim();
                 boolean skipParseOnLine = false;

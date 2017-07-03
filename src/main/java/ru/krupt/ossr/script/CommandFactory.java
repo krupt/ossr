@@ -31,6 +31,8 @@ public class CommandFactory {
                 return operationName;
             } else if (subType == CommandSubType.COMMENT) {
                 return "Comment added";
+            } else if (subType == CommandSubType.COMMIT) {
+                return "Commit complete";
             } else if (subType == CommandSubType.GRANT || subType == CommandSubType.REVOKE) {
                 return StringUtils.capitalize(subType.name()) + " succeeded";
             } else if (subType == CommandSubType.CREATE || subType == CommandSubType.DROP || subType == CommandSubType.ALTER) {

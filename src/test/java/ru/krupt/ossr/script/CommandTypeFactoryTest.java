@@ -32,6 +32,7 @@ public class CommandTypeFactoryTest {
         map.put("CREATE OR REPLACE trigger asdsa before insert on t_table BEGIN NULL; END;", CommandTypes.PLSQL_OBJECT);
         map.put("CREATE OR REPLACE type asdsa (dsa NUMBER)", CommandTypes.PLSQL_OBJECT);
         map.put("CREATE OR REPLACE type body asdsa (dsa NUMBER)", CommandTypes.PLSQL_OBJECT);
+        map.put("CREATE TABLE t_dic_oper_type (dsa NUMBER)", CommandTypes.DEFAULT);
     }
 
     @Test

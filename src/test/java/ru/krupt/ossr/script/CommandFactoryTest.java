@@ -19,6 +19,8 @@ public class CommandFactoryTest {
         map.put(new Command(CommandTypes.ANONYMOUS_PLSQL_BLOCK, CommandSubType.UNKNOWN, ObjectType.UNKNOWN, ""),
                 "PL/SQL procedure successfully completed");
 
+        map.put(new Command(CommandTypes.DEFAULT, CommandSubType.COMMIT, ObjectType.UNKNOWN, ""), "Commit complete");
+
         map.put(new Command(CommandTypes.DEFAULT, CommandSubType.CREATE, ObjectType.TABLE, ""), "Table created");
         map.put(new Command(CommandTypes.DEFAULT, CommandSubType.ALTER, ObjectType.TABLE, ""), "Table altered");
         map.put(new Command(CommandTypes.DEFAULT, CommandSubType.COMMENT, ObjectType.TABLE, ""), "Comment added");
